@@ -11,6 +11,12 @@ class Home extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.username !== this.props.username) {
+      this.setState({ display: 10 });
+    }
+  }
+
   handleLoadMore() {
     const { display } = this.state;
     let incre = display + 10;

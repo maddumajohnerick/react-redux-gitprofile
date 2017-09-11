@@ -6,6 +6,17 @@ import $ from 'jquery';
 class Repo extends Component {
   componentDidMount() {
     const { repo, username } = this.props;
+    this.generateBar(username, repo);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.username !== this.props.username) {
+      this.generateBar(nextProps.username, nextProps.repo);
+    }
+  }
+
+  generateBar(username, repo) {
+    $(`#lang-${repo.id}`).empty();
     axios({
       method: 'get',
       url: `https://api.github.com/repos/${username}/${repo.name}/languages`,

@@ -19,9 +19,12 @@ class Home extends Component {
   }
 
   render() {
-    const { username, gitProf } = this.props;
+    const { username, gitProf, rateLimit } = this.props;
+    console.log(rateLimit);
 
-    if (username && gitProf.length) {
+    if (rateLimit) {
+      return <h2 className="text-center">Please Try Again In A Few Minutes</h2>;
+    } else if (username && gitProf.length) {
       const total = gitProf.length
       const repos = gitProf.slice(0, this.state.display);
       const userInfo = repos[0].owner;

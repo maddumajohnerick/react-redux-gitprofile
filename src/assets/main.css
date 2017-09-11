@@ -103,4 +103,8 @@ h1{
   .repo-holder{
     padding: 0;
   }
+
+  .btn-default{
+    width: 100%;
+  }
 }

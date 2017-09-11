@@ -7,6 +7,7 @@ function mapStateToProps(state, ownProps) {
   return {
     username: ownProps.params.username,
     gitProf: state.gitProf,
+    rateLimit: state.rateLimit,
   };
 }
 

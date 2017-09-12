@@ -31,7 +31,9 @@ class Repo extends Component {
         const width = ((response.data[prop] / total) * 100);
         $(langs).append(`<div class='lang-indi' style='width: ${width}%; background-color: ${colors[prop]}; display: ${Math.round(width) === 0 ? 'none' : 'inline-block'}'>${prop}</div>`);
       }
-      $(`#lang-${repo.id}`).append(langs);
+      if (!$(`#lang-${repo.id} div`).length) {
+        $(`#lang-${repo.id}`).append(langs);
+      }
     });
   }
 

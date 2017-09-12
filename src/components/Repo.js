@@ -23,7 +23,7 @@ class Repo extends Component {
       }
       for (let prop in response.data) {
         const width = ((response.data[prop] / total) * 100);
-        $(langs).append(`<div class='progress-bar' role='progressbar' style='width: ${width}%; background-color: ${colors[prop]}; display: ${Math.round(width) === 0 ? 'none' : 'inline-block'}'>${prop}</div>`);
+        $(langs).append(`<div class='progress-bar' role='progressbar' style='width: ${width}%; background-color: ${colors[prop]};'>${prop}</div>`);
       }
       if (!$(`#lang-${id} div`).length) {
         $(`#lang-${id}`).append(langs);
@@ -41,7 +41,7 @@ class Repo extends Component {
     return (
       <article className="col-lg-6 repo-holder">
         <div className="repo">
-          <header>{repo.name}</header>
+          <header><a href={repo.html_url} target="_blank">{repo.name}</a></header>
           <section className="description">
             {description}
           </section>

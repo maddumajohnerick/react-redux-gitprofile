@@ -6,12 +6,22 @@ import * as gitProfActions from '../actions/gitProfActions';
 import $ from 'jquery';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: false,
+    };
+  }
+
   componentWillMount() {
     const { username, gitProfActions } = this.props;
 
+    this.setState({ loading: true });
     if (username) {
       gitProfActions.getUser(username)
       .then(() => {
+        this.setState({ loading: false });
         hashHistory.push(`/${username}`);
       });
     }
@@ -28,8 +38,10 @@ class App extends Component {
 
     formDataSerialize.map(form => (formData[form.name] = form.value));
 
+    this.setState({ loading: true });
     gitProfActions.getUser(formData.username)
     .then(() => {
+      this.setState({ loading: false });
       hashHistory.push(`/${formData.username}`);
     });
   }
@@ -48,7 +60,11 @@ class App extends Component {
             </form>
           </header>
           <div className="col-lg-8 col-lg-offset-2">
-            {children}
+            {this.state.loading ?
+              <h2 className="text-center">Loading...</h2>
+              :
+              children
+            }
           </div>
         </div>
       </div>

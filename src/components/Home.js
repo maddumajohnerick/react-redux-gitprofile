@@ -26,7 +26,6 @@ class Home extends Component {
 
   render() {
     const { username, gitProf, rateLimit } = this.props;
-    console.log(rateLimit);
 
     if (rateLimit) {
       return <h2 className="text-center">Please Try Again In A Few Minutes</h2>;
@@ -42,7 +41,7 @@ class Home extends Component {
           </aside>
           <section className="col-lg-9 repo-container">
             {repos.map(repo =>
-              <Repo key={repo.id} repo={repo} username={username}/>
+              <Repo key={repo.id} repo={repo} />
             )}
             {total >= this.state.display ?
               <button className="btn btn-lg btn-default" onClick={this.handleLoadMore.bind(this)}>

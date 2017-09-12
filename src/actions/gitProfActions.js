@@ -16,7 +16,6 @@ export function getUser(username) {
       url: `https://api.github.com/users/${username}/repos`,
     })
     .then(function(response) {
-      console.log(response);
       dispatch(getUserSuccess(response.data));
     })
     .catch(e => {

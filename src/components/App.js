@@ -17,12 +17,15 @@ class App extends Component {
   componentWillMount() {
     const { username, gitProfActions } = this.props;
 
-    this.setState({ loading: true });
     if (username) {
+      this.setState({ loading: true });
       gitProfActions.getUser(username)
       .then(() => {
         this.setState({ loading: false });
         hashHistory.push(`/${username}`);
+      })
+      .catch(() => {
+        this.setState({ loading: false });
       });
     }
   }
